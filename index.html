@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Shahen!</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #ffcce6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('https://media.istockphoto.com/id/1153750911/vector/birthday-background-with-colorful-confetti-and-balloons.jpg?s=612x612&w=0&k=20&c=dGSHZsTsSJL1IPQ7KUHvWEKEFM5PxhKKfqbPTjSAD1A=');
+            background-size: cover;
+            padding: 0 15px; /* Add padding for small screens */
+        }
+        .card {
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+        h1 {
+            color: #ff66b3;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        input {
+            padding: 12px;
+            width: 80%;
+            border: 2px solid #ff99cc;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+        }
+        button {
+            background-color: #ff66b3;
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 10px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: auto; /* Better for mobile */
+            touch-action: manipulation; /* Better touch experience */
+        }
+        button:hover {
+            background-color: #ff3399;
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 1.3em;
+            color: #ff66b3;
+            font-weight: bold;
+        }
+        .balloons {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .balloon {
+            position: absolute;
+            width: 40px;
+            height: 60px;
+            background-color: rgba(255, 102, 179, 0.7);
+            border-radius: 50%;
+            animation: float 15s infinite ease-in-out;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) translateX(0); }
+            100% { transform: translateY(-100px) translateX(100px); }
+        }
+        .cake-container {
+            display: none;
+            margin-top: 20px;
+            animation: fadeIn 1s ease-in-out;
+        }
+        .cake-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        #nicknameForm {
+            display: none;
+        }
+        
+        /* Mobile-specific styles */
+        @media (max-width: 480px) {
+            .card {
+                padding: 20px 15px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            input, button {
+                font-size: 1em;
+            }
+            .balloon {
+                width: 30px; /* Smaller balloons on mobile */
+                height: 45px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>🎂 Happy Birthday! 🎂</h1>
+        <div id="nameForm">
+            <p>Please write your name:</p>
+            <input type="text" id="nameInput" placeholder="Enter your name">
+            <button onclick="checkName()">Submit</button>
+        </div>
+        <div id="nicknameForm">
+            <p>Write your nickname:</p>
+            <input type="text" id="nicknameInput" placeholder="Enter your nickname">
+            <button onclick="showNickname()">Submit</button>
+        </div>
+        <div id="message" class="message"></div>
+        <div id="cakeContainer" class="cake-container">
+            <img src="shahen's cake.jpg" alt="Shahen's Birthday Cake" class="cake-image">
+        </div>
+    </div>
+
+    <div class="balloons" id="balloons"></div>
+
+    <script>
+        // Create balloons
+        const balloonsContainer = document.getElementById('balloons');
+        const colors = ['#ff99cc', '#ff66b3', '#ff3399', '#cc0066', '#ffccff'];
+        
+        for (let i = 0; i < 20; i++) {
+            const balloon = document.createElement('div');
+            balloon.className = 'balloon';
+            balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            balloon.style.left = `${Math.random() * 100}%`;
+            balloon.style.animationDuration = `${15 + Math.random() * 10}s`;
+            balloon.style.animationDelay = `${Math.random() * 5}s`;
+            balloonsContainer.appendChild(balloon);
+        }
+
+        function checkName() {
+            const nameInput = document.getElementById('nameInput').value.trim();
+            if (nameInput.toLowerCase() === 'shahen') {
+                document.getElementById('nameForm').style.display = 'none';
+                document.getElementById('nicknameForm').style.display = 'block';
+                document.getElementById('message').textContent = "Hi Shahen! Please write your nickname.";
+            } else {
+                document.getElementById('message').textContent = "That's not Shahen! Try again.";
+            }
+        }
+
+        function showNickname() {
+            const nickname = document.getElementById('nicknameInput').value.trim();
+            // Redirect to file in 96 directory
+            window.location.href = "96/birthday-cake.html";
+        }
+
+        function celebrate() {
+            // Add more balloons for celebration
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const balloon = document.createElement('div');
+                    balloon.className = 'balloon';
+                    balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    balloon.style.left = `${Math.random() * 100}%`;
+                    balloon.style.animationDuration = `${10 + Math.random() * 5}s`;
+                    balloonsContainer.appendChild(balloon);
+                }, i * 100);
+            }
+        }
+    </script>
+</body>
+</html> 
